@@ -43,9 +43,9 @@ jobs:
           mv ./build/forever-installer* ./artifacts
           mv ./build/absolute-installer* ./artifacts
           mv ./build/timeless-installer* ./artifacts
-          tar -czvf linux.tar.gz -C ./artifacts .
+          tar -czvf linux.tar.gz -C ./artifacts
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: linux-forever
+          name: linux-installer
           path: linux.tar.gz
