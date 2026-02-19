@@ -7,7 +7,7 @@ static size_t WriteCallback(void* contents, size_t size, size_t nmemb, std::ofst
 }
 
 void downloadFile(const char websiteLink[], const char fileName[]) {
-	std::cout << "Downloading: \"" << websiteLink << "\" as \"" << fileName << "\"...\n"
+//	std::cout << "Downloading \"" << websiteLink << "\" as \"" << fileName << "\"...\n";
 	
 	CURL* curl;
 	CURLcode res;
@@ -45,15 +45,26 @@ int main() {
 	downloadFile("https://retrocdn.net/images/e/e4/Sonic_the_Hedgehog_(com.sega.sonic1px_v3.5.1).apk", "game.apk");
 #elif RETRO_GAME == GAME_SONIC2ABSOLUTE
 	std::cout << "The Sonic 2 APK is downloading... Hold Out! Downloader!\n";
-	std::cout << "(nvm i lied)\n";
+	downloadFile("https://retrocdn.net/images/b/b0/Sonic_the_Hedgehog_2_Classic_(com.sega.sonic2.runner_v1.3.1).apk", "game.apk");
 #elif RETRO_GAME == GAME_SONICCDTIMELESS // dude where we gettin this bruh
 	std::cout << "The Sonic CD APK is downloading... Hold Out! Downloader!\n";
 	std::cout << "(nvm i lied)\n";
 #endif
 	std::cout << "APK Download finished.\n";
-	std::cout << "Saved to: \"" << "file/path/here.apk" << "\"\n\n";
+	std::cout << "Saved to: \"game.apk\"\n\n";
 	
-	std::cout << "Game Download finished.\n";
+	// where lol
+#if RETRO_GAME == GAME_SONIC1FOREVER
+	std::cout << "Sonic 1 Forever is downloading... Hold Out! Downloader!\n";
+	std::cout << "(nvm i lied    again)\n";
+#elif RETRO_GAME == GAME_SONIC2ABSOLUTE
+	std::cout << "Sonic 2 Absolute is downloading... Hold Out! Downloader!\n";
+	std::cout << "(nvm i lied    again)\n";
+#elif RETRO_GAME == GAME_SONICCDTIMELESS
+	std::cout << "Sonic CD Timeless is downloading... Hold Out! Downloader!\n";
+	std::cout << "(nvm i lied    again)\n";
+#endif
+	std::cout << "Mod Download finished.\n";
 	std::cout << "Saved to: \"" << "file/path/here.data" << "\"\n\n";
 	
 	std::cout << "WILL PROBABLY IMPLEMENT SOMETHING LIKE RETRUN INSIDE THIS INSTEAD\n\n";
