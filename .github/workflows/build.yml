@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libglew-dev libglfw3-dev libcurl-dev
+          sudo apt-get install libglew-dev libglfw3-dev libcurl4-openssl-dev
       - name: Build Forever Installer
         run: |
           cmake -B build -DRETRO_GAMETYPE=0 ${{env.GENERAL_LINUX_FLAGS}}
