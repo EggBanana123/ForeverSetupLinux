@@ -1,0 +1,51 @@
+name: Build Installer
+on:
+  push:
+
+env:
+  GENERAL_FLAGS: "-DCMAKE_BUILD_TYPE=Release"
+  # Normally you would use $VCPKG_INSTALLATION_PATH, but it's broken...so hardcode C:/vcpkg
+  # FIXME: For some reason ubuntu enables _FORTIFY_SOURCE by default, so let's override it to prevent IO bugs
+  GENERAL_LINUX_FLAGS: "-DCMAKE_CXX_FLAGS='-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0'"
+
+jobs:
+  installer-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install libglew-dev libglfw3-dev libcurl-dev
+      - name: Build Forever Installer
+        run: |
+          cmake -B build -DRETRO_GAMETYPE=0 ${{env.GENERAL_LINUX_FLAGS}}
+          cmake --build build --parallel
+          mv ./build/teamforever-installer ./build/forever-installer
+      - name: Build Absolute Installer
+        run: |
+          cmake -B build -DRETRO_GAMETYPE=1 ${{env.GENERAL_LINUX_FLAGS}}
+          cmake --build build --parallel
+          mv ./build/teamforever-installer ./build/absolute-installer
+      - name: Build Timless Installer
+        run: |
+          cmake -B build -DRETRO_GAMETYPE=2 ${{env.GENERAL_LINUX_FLAGS}}
+          cmake --build build --parallel
+          mv ./build/teamforever-installer ./build/timeless-installer
+      # tar the executables so that they don't lose exec permissions
+      # see: https://github.com/actions/upload-artifact?tab=readme-ov-file#permission-loss
+      - name: Move artifacts
+        run: |
+          mkdir artifacts
+          mv ./build/forever-installer* ./artifacts
+          mv ./build/absolute-installer* ./artifacts
+          mv ./build/timeless-installer* ./artifacts
+          tar -czvf linux.tar.gz -C ./artifacts .
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-forever
+          path: linux.tar.gz
