@@ -53,7 +53,7 @@ int main() {
 	std::cout << "APK Download finished.\n";
 	std::cout << "Saved to: \"game.apk\"\n\n";
 	
-	// where lol
+	// download mod (where lol)
 #if RETRO_GAME == GAME_SONIC1FOREVER
 	std::cout << "Sonic 1 Forever is downloading... Hold Out! Downloader!\n";
 	std::cout << "(nvm i lied    again)\n";
@@ -67,8 +67,7 @@ int main() {
 	std::cout << "Mod Download finished.\n";
 	std::cout << "Saved to: \"" << "file/path/here.data" << "\"\n\n";
 	
-	std::cout << "WILL PROBABLY IMPLEMENT SOMETHING LIKE RETRUN INSIDE THIS INSTEAD\n\n";
-	
+	// extract apk
 	std::cout << "Extracting APK...\n";
 	std::cout << "Extraction complete!"; std::cout << "\n\n";
 	
@@ -76,5 +75,8 @@ int main() {
 	std::cout << "Moving 'Data.rsdk.xmf'...\n";
 	std::cout << "The file has been moved!\n";
 	std::cout << "Saved to: \"" << "file/path/here.data" << "\"\n\n";
+	
+	// extract data file
+	std::cout << "steal from retroed??\n\n";
 	return 0;
 }
