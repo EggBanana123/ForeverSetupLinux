@@ -15,11 +15,4 @@ cmake --build build --config release
 uh yeah that simple lol
 
 !! make sure you have the fllowing packages !!
-(prolly forgor a few)
-- libcurl-dev
-
-might need these idk
-- libzip-dev
-- zipmerge
-- zipcmp
-- zipmerge
+(ill update this when i actuaally finish this lol)

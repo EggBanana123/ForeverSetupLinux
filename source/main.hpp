@@ -10,5 +10,5 @@
 
 #include <iostream>		// ios tream 🤮
 #include <fstream>		// file steam
-//#include <zip.h>		// lipZib
+#include <zip.h>		// lipZib
 #include <curl/curl.h>	// cUR
